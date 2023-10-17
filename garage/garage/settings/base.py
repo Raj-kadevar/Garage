@@ -32,8 +32,7 @@ PROJECT_NAME = basename(PROJECT_ROOT).capitalize()
 # Project folder:
 PROJECT_FOLDER = basename(PROJECT_ROOT)
 
-# Project domain:
-PROJECT_DOMAIN = "%s.com" % PROJECT_NAME.lower()
+
 
 # Add our project to our pythonpath, this way we don"t need to type our project
 # name in our dotted import paths:
@@ -56,28 +55,6 @@ MANAGERS = ADMINS
 
 ADMIN_URL = env.str("DJANGO_ADMIN_URL", "admin")
 
-DATABASES = {
-    'default': env.db("DATABASE_URL", default="mysql://root:root@localhost:3306/garage")
-}
-DATABASES['default']['ATOMIC_REQUESTS'] = True
-DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)
-DATABASES["default"]["OPTIONS"] = {
-    "init_command": "SET default_storage_engine=InnoDB",
-    "charset": "utf8mb4",
-    "use_unicode": True,
-}
-
-EMAIL_BACKEND = env.str("EMAIL_BACKEND", "django.core.mail.backends.console.EmailBackend")
-EMAIL_HOST = env.str("EMAIL_HOST", "")
-EMAIL_HOST_USER = env.str("EMAIL_HOST_USER", "")
-EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD", "")
-EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", False)
-EMAIL_PORT = env.int("EMAIL_PORT", 25)
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-# Hosts/domain names that are valid for this site; required if DEBUG is False
-# See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["*"])
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -91,19 +68,8 @@ LANGUAGE_CODE = "en"
 
 SITE_ID = 1
 
-# If you set this to False, Django will make some optimizations so as not
-# to load the internationalization machinery.
-USE_I18N = True
 
-# If you set this to False, Django will not format dates, numbers and
-# calendars according to the current locale.
-USE_L10N = True
 
-# If you set this to False, Django will not use timezone-aware datetimes.
-USE_TZ = True
-
-# Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/var/www/example.com/media/"
 MEDIA_ROOT = normpath(join(PROJECT_ROOT, "media"))
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
@@ -155,10 +121,8 @@ TEMPLATES = [
                 "django.template.context_processors.media",
                 "django.template.context_processors.csrf",
                 "django.template.context_processors.tz",
-                
                 "django.template.context_processors.static",
 
-                
             ]
         },
     },
@@ -195,7 +159,7 @@ INSTALLED_APPS = [
 ]
 
 AUTH_USER_MODEL = "user.User"
-LOGIN_REDIRECT_URL = "user:redirect"
+LOGIN_REDIRECT_URL = ""
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -212,17 +176,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error when DEBUG=False.
-# See http://docs.djangoproject.com/en/dev/topics/logging for
-# more details on how to customize your logging configuration.
-# KN_LOG_FILE_PATH = join(DJANGO_ROOT, "logs/log.log")
 
-# from kn_defaults.logging.defaults import get_base_logging
-# LOGGING = get_base_logging(logstash=False)
-
-# KN_LOGGING_URL_PATTERNS = []
 
 LOCALE_PATHS = (normpath(join(PROJECT_ROOT, "locale")),)
 
@@ -234,25 +188,5 @@ LANGUAGES = [
     
 ]
 
-
-CACHE_ENGINES = {
-    
-    "dummy": {
-        "BACKEND": "django.core.cache.backends.dummy.DummyCache",
-    }
-}
-
-CACHES = {
-    "default": CACHE_ENGINES[env.str("CACHE", default="dummy")]
-}
-
-REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.SessionAuthentication",
-        "rest_framework.authentication.TokenAuthentication",
-    ),
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
-    "PAGE_SIZE": 10
-}
 
 
