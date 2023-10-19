@@ -1,0 +1,25 @@
+{% autoescape off %}  
+Dear {{ user.username }},
+
+We hope this email finds you well. In order to ensure the security of your account and maintain the accuracy of our records,
+we have implemented an email verification process for all our users.
+
+To complete the verification, please follow the steps below:
+
+Click on the following link or copy and paste it into your browser's address bar:
+{{domain}}/email-verification/{{user.id}}
+
+You will be directed to a verification page. If you are not automatically logged in, please enter your credentials to proceed.
+Once logged in, your email will be successfully verified, and you will receive a confirmation message.
+Please note that this verification process is mandatory and needs to be completed within the next {{validation_period}} hours. Failure to verify your email within this timeframe might result in limited access to your account.
+
+If you encounter any issues or have any questions regarding the verification process, please feel free to contact our support team at {{support_mail}}.
+
+Thank you for your prompt attention to this matter. We appreciate your cooperation in helping us maintain a secure environment for all our users.
+
+Best regards,
+
+{{email_sender}}
+{{email_title}}
+{{email_contact}}
+{% endautoescape %}

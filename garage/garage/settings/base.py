@@ -156,10 +156,15 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "rest_framework",
     "rest_framework.authtoken",
+    "crispy_forms",
 ]
 
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
 AUTH_USER_MODEL = "user.User"
-LOGIN_REDIRECT_URL = ""
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "index"
+LOGOUT_REDIRECT_URL = "login"
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -179,6 +184,18 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 LOCALE_PATHS = (normpath(join(PROJECT_ROOT, "locale")),)
+
+EMAIL_BACKEND = env.str("EMAIL_BACKEND", "")
+EMAIL_HOST = env.str("EMAIL_HOST", "")
+EMAIL_HOST_USER = env.str("EMAIL_HOST_USER", "")
+EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD", "")
+EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", False)
+EMAIL_PORT = env.int("EMAIL_PORT", 25)
+EMAIL_SENDER = env.str("EMAIL_SENDER")
+EMAIL_TITLE = env.str("TITLE")
+EMAIL_CONTACT_INFORMATION = env.int("CONTACT_INFORMATION")
+SUPPORT_EMAIL_OR_PHONE_NUMBER = env.str("SUPPORT_EMAIL_OR_PHONE_NUMBER")
+EMAIL_LINK_VALIDATION_HOURS = env.int("EMAIL_LINK_VALIDATION_PERIOD")
 
 # Dummy gettext function
 gettext = lambda s: s

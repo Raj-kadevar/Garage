@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/registration.css' %}">
+{% endblock %}
+<div class="container">
+    {% block content %}
+    <section class="vh-100">
+        <div class="container py-5 h-100">
+            <div class="row d-flex align-items-center justify-content-center h-100">
+                <div class="col-md-8 col-lg-7 col-xl-6">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                         class="img-fluid" alt="Phone image">
+                </div>
+                <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                    <form method="POST" id="register_form">
+                        {% csrf_token %}
+
+                        <div class="form-outline mb-4">
+                            {{form.email}}
+                            <label class="form-label" for="form1Example13">Email address</label>
+                        </div>
+                        <span id="email"></span>
+
+                        <div class="form-outline mb-4">
+                            {{form.username}}
+                            <label class="form-label" for="form1Example13">Username</label>
+                        </div>
+                        <span id="name"></span>
+
+                        <div class="form-outline mb-4">
+                            {{form.password1}}
+                            <label class="form-label" for="form1Example23">Password</label>
+                        </div>
+                        <span id="password1"></span>
+
+                        <div class="form-outline mb-4">
+                            {{form.password2}}
+                            <label class="form-label" for="form1Example23">Confirm-Password</label>
+                        </div>
+                        <span id="password2"></span>
+                        <div class="d-flex justify-content-around align-items-center mb-4">
+                            <a href="#!">Forgot password?</a>
+
+                        </div>
+                        <p class="text--center">Already have an account? -> <a href="{% url 'login' %}">Login</a>
+                        </p>
+                        <button class="btn btn-primary btn-lg btn-block" id="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endblock %}
+</div>
+
+{% block extra_js %}
+<script src="{% static 'js/registration.js' %}"></script>
+{% endblock %}
