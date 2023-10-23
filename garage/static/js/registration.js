@@ -5,7 +5,6 @@ $("#submit").click(function(event){
     event.preventDefault();
     var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
     var formdata = $("#register_form").serialize();
-    console.log("data ====",formdata)
     makeAjaxRequest('POST', csrfToken, "", formdata, function(response) {
         if (response.message) {
             window.location.href= '/login/';

@@ -7,4 +7,4 @@ User = get_user_model()
 
 @admin.register(User)
 class UserAdmin(auth_admin.UserAdmin):
-    list_display = ["username", "email", "verify"]
+    list_display = ["username", "email"]
