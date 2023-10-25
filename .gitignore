@@ -1,0 +1,13 @@
+garage/garage/settings/dev.py
+*.py[co]
+.idea/
+.coverage
+media/*
+garage/media/*
+.idea/*	
+.templates/
+.templates
+htmlcov/
+.env
+.flake8
+
