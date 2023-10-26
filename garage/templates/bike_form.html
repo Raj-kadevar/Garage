@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/vehicle.css' %}">
+{% endblock %}
+<div class="container">
+    {% block content %}
+    <section class="vh-100">
+        <div class="container py-5 h-100">
+            <div class="row d-flex align-items-center justify-content-center h-100">
+                <div class="col-md-8 col-lg-7 col-xl-6">
+                    <img src="https://imgd.aeplcdn.com/664x374/n/cw/ec/134499/v-strom-800-right-front-three-quarter.jpeg?isig=0&q=80"
+                         class="img-fluid" alt="Phone image">
+                </div>
+                <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                    <form method="POST" id="vehicle_form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-outline mb-4">
+                            {{form.name}}
+                            <label class="form-label" for="name">name</label>
+                            <span id="name"></span>
+
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            {{form.color}}
+                            <label class="form-label" for="color">color</label>
+                            <span id="color"></span>
+
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            {{form.price}}
+                            <label class="form-label" for="price">price</label>
+                            <span id="price"></span>
+
+                        </div>
+
+
+                        <div class="form-outline mb-4">
+                            {{form.mileage}}
+                            <label class="form-label" for="mileage">mileage</label>
+                            <span id="mileage"></span>
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            {{form.image}}
+                            <label class="form-label" for="image">image</label>
+                            <span id="image"></span>
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            {{form.plate_number}}
+                            <label class="form-label" for="plate">plate_number</label>
+                            <span id="number"></span>
+                        </div>
+                        <p class="text--center">Back to home -> <a href="{% url 'index' %}">Home</a>
+                        </p>
+                        <button class="btn btn-primary btn-lg btn-block" id="submit">Add</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endblock %}
+</div>
+
+{% block extra_js %}
+<script src="{% static 'js/vehicle.js' %}"></script>
+<script src="{% static 'js/vehicle_request.js' %}"></script>
+{% endblock %}

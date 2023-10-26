@@ -1,6 +1,5 @@
-function makeAjaxRequest(methodType, csrfToken, url, data, callback)
+function carAjaxRequest(methodType, csrfToken, url, data, callback)
 {
-    debugger;
     $.ajax({
         method: methodType,
         headers: {
@@ -8,6 +7,8 @@ function makeAjaxRequest(methodType, csrfToken, url, data, callback)
         },
         url: url,
         data: data,
+        processData: false,
+        contentType: false,
         success: function (data) {
             if (callback) {
                 callback(data)
