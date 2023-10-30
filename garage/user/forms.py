@@ -43,3 +43,14 @@ class BikeRegistration(forms.ModelForm):
         model = Bike
         fields = ['name', 'price',  'plate_number', 'color', 'image', 'mileage']
 
+
+class CarUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Car
+        fields = ['name', 'price', 'plate_number', 'color', 'mileage']
+
+
+class BikeUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Car
+        fields = ['name', 'price', 'plate_number', 'color', 'mileage']

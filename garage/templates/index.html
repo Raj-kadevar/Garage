@@ -1,29 +1,61 @@
-{% extends "base.html" %}
+{% extends "home_base.html" %}
 {% load static %}
 {% block extra_css %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
 {% endblock %}
 <div class="container">
     {% block content %}
-    {% if messages %}
-    {% for message in messages %}
-    <div class="container-fluid p-0">
-        <div class="message" role="alert">
-            {{ message }}
-            <button type="button" id="close" class="btn btn-success">
-                close
-            </button>
+    {% csrf_token %}
+    <div class="container" id="main_block">
+        <div class="row">
+            {% for bike in bikes %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card my-2 shadow-0 box">
+                    <img src="{{bike.image.url}}"
+                         class="card-img-top" style="aspect-ratio: 1 / 1">
+                    <div class="card-body p-0 pt-3 ms-2">
+                        <p class="card-text mb-0 ">Name:{{bike.name}}</p>
+                    </div>
+                    <div class="card-body p-0 pt-3 ms-2">
+                        <p class="card-text mb-0 ">Price:{{bike.price}}</p>
+                    </div>
+                    <div class="card-body p-0 pt-3 ms-2">
+                        <p class="card-text mb-0"> Color:{{bike.get_color_display}}</p>
+                    </div>
+                    <div class="card-body p-0 pt-3 ms-2">
+                        <p class="card-text mb-0"> Avg:{{bike.mileage}}</p>
+                    </div>
+
+                </div>
+            </div>
+            {% endfor %}
+            {% for car in cars %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card my-2 shadow-0 box">
+                    <img src="{{car.image.url}}"
+                         class="card-img-top" style="aspect-ratio: 1 / 1">
+                    <div class="card-body p-0 pt-3 ms-2">
+                        <p class="card-text mb-0 ">Name:{{car.name}}</p>
+                    </div>
+                    <div class="card-body p-0 pt-3 ms-2">
+                        <p class="card-text mb-0 ">Price:{{car.price}}</p>
+                    </div>
+                    <div class="card-body p-0 pt-3 ms-2">
+                        <p class="card-text mb-0"> Color:{{car.get_color_display}}</p>
+                    </div>
+                    <div class="card-body p-0 pt-3 ms-2">
+                        <p class="card-text mb-0"> Avg:{{car.mileage}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
-    {% endfor %}
-    {% endif %}
-    <h4>welcome home</h4>
-    <a href="{% url 'reset_password' %}">Reset Password</a>
-    <a href="{% url 'add_bike' %}">Add Bike</a>
-    <a href="{% url 'add_car' %}">Add Car</a>
     {% endblock %}
 </div>
 
 {% block extra_js %}
 <script src="{% static 'js/index.js' %}"></script>
+<script src="{% static 'js/vehicle.js' %}"></script>
+<script src="{% static 'js/vehicle_request.js' %}"></script>
 {% endblock %}
