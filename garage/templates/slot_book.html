@@ -1,0 +1,28 @@
+{% load static %}
+<div class="app-time">
+    <div>
+        <p>Timings</p>
+        <p>{{week_day.start_time}} to {{week_day.end_time}}</p>
+        <div class="app-check">
+            {% for slot in slots %}
+            <input type="radio" class="option-input radio" id="slot" name="example" value="{{slot.id}}"/>
+            <div class="app-border">
+
+                <label class="app-label">{{ slot.start_time }}
+                </label>
+            </div>
+            {% endfor %}
+        </div></br>
+        <button class="btn btn-outline-light" id="book">Book</button>
+    </div>
+</div>
+<!--    <div class="app-border">-->
+
+<!--        <input type="radio" class="option-input radio" name="example" disabled/>-->
+<!--        <div class="app-border">-->
+
+<!--            <label class="app-label">4:30 PM-->
+<!--            </label>-->
+<!--        </div>-->
+<!--    </div>-->
+<script src="{% static 'js/index.js' %}"></script>

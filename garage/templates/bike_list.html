@@ -18,11 +18,12 @@
                 <p class="card-text mb-0"> Avg:{{bike.mileage}} km/h</p>
             </div>
         </div>
-        <button type="button" class="btn btn-primary" onclick="updateBike({{bike.id}})" data-bs-toggle="modal"
+        <button type="button" class="btn btn-outline-primary" onclick="updateBike({{bike.id}})" data-bs-toggle="modal"
                 data-bs-target="#update">
-            Update
+            <i class="fa fa-pencil"></i>
         </button>
-        <button onclick="deleteBike({{bike.id}})" class="btn btn-danger">Delete</button>
+
+            <button onclick="deleteBike({{bike.id}})" class="btn btn-outline-danger"><i class="fa fa-remove"></i></button>
     </div>
     {% endfor %}
     <div class="col-lg-2 col-md-2 col-sm-2">
@@ -109,7 +110,7 @@
             <div class="modal-content">
                 {{form.name}}
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Update your car</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Update your bike</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

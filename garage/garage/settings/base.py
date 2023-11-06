@@ -157,6 +157,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "crispy_forms",
+    'booking',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'

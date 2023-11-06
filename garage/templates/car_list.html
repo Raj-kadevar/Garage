@@ -18,11 +18,11 @@
                 <p class="card-text mb-0"> Avg:{{car.mileage}} km/h</p>
             </div>
         </div>
-        <button type="button" class="btn btn-primary" onclick="update({{car.id}})" data-bs-toggle="modal"
+        <button type="button" class="btn btn-outline-primary" onclick="update({{car.id}})" data-bs-toggle="modal"
                 data-bs-target="#update">
-            Update
+            <i class="fa fa-pencil"></i>
         </button>
-        <button onclick="deleteCar({{car.id}})" class="btn btn-danger">Delete</button>
+        <button onclick="deleteCar({{car.id}})" class="btn btn-outline-danger"><i class="fa fa-remove"></i></button>
     </div>
     {% endfor %}
     <div class="col-lg-2 col-md-2 col-sm-2">

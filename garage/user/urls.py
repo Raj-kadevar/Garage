@@ -2,7 +2,8 @@ from django.contrib.auth.views import LogoutView
 from django.urls import path
 
 from user.views import UserLoginView, RegistrationView, VerficationView, HomeView, ResetPassword, CarRegistrationView, \
-    BikeRegistrationView, BikeList, CarList, CarUpdate, BikeUpdate, BikeDelete, CarDelete
+    BikeRegistrationView, BikeList, CarList, CarUpdate, BikeUpdate, BikeDelete, CarDelete, AddGarage, UpdateGarage, \
+    DeleteGarage, AddSchedule, RepairVehicle
 
 urlpatterns = [
     path("index/", HomeView.as_view(), name="index"),
@@ -25,4 +26,11 @@ urlpatterns = [
 
     path("delete-bike/<int:pk>", BikeDelete.as_view(), name="bike_delete"),
     path("delete-car/<int:pk>", CarDelete.as_view(), name="car_delete"),
+
+    path("add-garage/", AddGarage.as_view(), name="add_garage"),
+    path("update-category/<int:pk>", UpdateGarage.as_view(), name="update_garage"),
+    path("delete-garage/<int:pk>", DeleteGarage.as_view(), name="delete_garage"),
+
+    path("add-schedule/", AddSchedule.as_view(), name="add_schedule"),
+    path("repair-vehicle/", RepairVehicle.as_view(), name="repair-vehicle"),
 ]

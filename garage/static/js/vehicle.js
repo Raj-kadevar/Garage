@@ -30,7 +30,7 @@ $("#submit").click(function(event){
            $('#mileage').text(response['mileage'])
         }
     })
-    callbakc();
+    Callback();
 });
 var url;
 function update(id){
@@ -91,6 +91,10 @@ function deleteCar(id){
     })
 }
 
+$(".btn-close").click(function(event){
+    $('#bike').trigger('click');
+});
+
 $("#update_car").click(function(event){
     $('span').text('')
     event.preventDefault();
@@ -103,7 +107,7 @@ $("#update_car").click(function(event){
     formdata.append('mileage',$('.Mileage').val());
     carAjaxRequest('POST', csrfToken, url, formdata, function(response) {
         if (response.message) {
-           $('.btn-close').trigger('click');
+           $('#update').modal('hide');
            alert('successfully updated');
            if(response.message == 'successful')
            {
@@ -120,6 +124,5 @@ $("#update_car").click(function(event){
            $('#mlg').text(response['mileage'])
         }
     })
-    callbakc();
+    Callback();
 });
-
