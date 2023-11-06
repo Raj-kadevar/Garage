@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title> garage </title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/vehicle.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="{% static 'js/ajax_request.js' %}"></script>
+        <script src="{% static 'js/index.js' %}"></script>
+
+        {# Global stylesheets #}
+        {% block extra_css %}
+
+        {% endblock %}
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}" onload="body()">
+
+        {% block header %}
+            {% include 'header-footer/header.html' %}
+        {% endblock %}
+        {% block content %}
+
+        {% endblock %}
+
+
+        {% block extra_js %}
+
+        {% endblock %}
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

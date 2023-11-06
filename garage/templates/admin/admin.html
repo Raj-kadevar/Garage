@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width,
+                   initial-scale=1.0">
+    <title>Flip-mart</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet"
+          href="{% static 'css/admin.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'css/responsive.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        td{
+            border:1px solid blue;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="main">
+
+    <div class="report-container">
+        <div class="report-header">
+            <h1 class="recent-Articles">garage</h1>
+            <a href="{% url 'add_garage' %}">
+                <button class="btn btn-outline-primary">Add Garage</button>
+            </a>
+            <a href="{% url 'add_schedule' %}">
+                <button class="btn btn-outline-primary">Add Schedule</button>
+            </a>
+        </div>
+        {% if not garages %}
+        <h4>0 garages available </h4>
+        {% else %}
+        <div class="report-body">
+            <table>
+                <tr>
+                    <th class="t-op">Garage</th>
+                    <th class="t-op">Type</th>
+                    <th class="t-op">Owner</th>
+                    <th class="t-op">Workingday</th>
+                    <th class="t-op">Update</th>
+                    <th class="t-op">Delete</th>
+
+                </tr>
+                {% for garage in garages %}
+                <tr>
+                    <td class="t-op-nextlvl">{{garage.name}}</td>
+                    <td class="t-op-nextlvl">{{garage.type}}</td>
+                    <td class="t-op-nextlvl">{{garage.owner}}</td>
+                    <td class="t-op-nextlvl">{% for day in garage.workingday.all %}{{ day }}<br/>{% endfor %}</td>
+
+                    <td><a href="{% url 'update_garage' garage.id%}">
+                        <button class="btn btn-outline-primary"><i class="fa fa-pencil"></i></button>
+                    </a></td>
+
+
+                    <td><a href="{% url 'delete_garage' garage.id%}">
+                        <button class="btn btn-outline-danger"><i class="fa fa-remove"></i></button>
+                    </a></td>
+
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% endif%}
+
+
+    </div>
+</div>
+</body>
+</html>

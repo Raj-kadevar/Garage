@@ -1,0 +1,179 @@
+{% load static %}
+<div class="row">
+    {% for bike in bikes %}
+    <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="card my-2 shadow-0 box">
+            <img src="{{bike.image.url}}"
+                 class="card-img-top" style="aspect-ratio: 1 / 1">
+            <div class="card-body p-0 pt-3 ms-2">
+                <p class="card-text mb-0 ">Name:{{bike.name}}</p>
+            </div>
+            <div class="card-body p-0 pt-3 ms-2">
+                <p class="card-text mb-0 ">Price:{{bike.price}}</p>
+            </div>
+            <div class="card-body p-0 pt-3 ms-2">
+                <p class="card-text mb-0"> Color:{{bike.get_color_display}}</p>
+            </div>
+            <div class="card-body p-0 pt-3 ms-2">
+                <p class="card-text mb-0"> Avg:{{bike.mileage}} km/h</p>
+            </div>
+        </div>
+        <button type="button" class="btn btn-outline-primary" onclick="updateBike({{bike.id}})" data-bs-toggle="modal"
+                data-bs-target="#update">
+            <i class="fa fa-pencil"></i>
+        </button>
+
+            <button onclick="deleteBike({{bike.id}})" class="btn btn-outline-danger"><i class="fa fa-remove"></i></button>
+    </div>
+    {% endfor %}
+    <div class="col-lg-2 col-md-2 col-sm-2">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            add bike
+        </button>
+    </div>
+
+
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Add a new bike</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" id="vehicle_form" enctype="multipart/form-data">
+                        <div class="form-outline mb-4">
+                            <input type="text" name="name" maxlength="20" class="form-control form-control-lg" id="Name"
+                                   placeholder="Name" required="">
+                            <label class="form-label" for="name">name</label>
+                            <span id="name"></span>
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <select name="color" class="form-control form-control-lg" id="Color" placeholder="Color"
+                                    required="">
+                                <option value="" selected="">---------</option>
+                                <option value="R">Red</option>
+                                <option value="W">White</option>
+                                <option value="BL">Black</option>
+                                <option value="B">Blue</option>
+                                <option value="Y">Yellow</option>
+                            </select>
+                            <label class="form-label" for="color">color</label>
+                            <span id="color"></span>
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <input type="number" name="price" min="0" max="9223372036854775807"
+                                   class="form-control form-control-lg" id="Price" placeholder="Price" required="">
+                            <label class="form-label" for="price">price</label>
+                            <span id="price"></span>
+
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <input type="number" name="mileage" min="0" class="form-control form-control-lg"
+                                   id="Mileage" placeholder="Mileage" required="">
+                            <label class="form-label" for="mileage">mileage</label>
+                            <span id="mileage"></span>
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <input type="file" name="image" accept="image/*" class="form-control form-control-lg"
+                                   id="Image" placeholder="Image" required="">
+                            <label class="form-label" for="image">image</label>
+                            <span id="image"></span>
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <input type="text" name="plate_number" maxlength="12" class="form-control form-control-lg"
+                                   id="Plate number" placeholder="Plate number" required="">
+                            <label class="form-label" for="plate">plate_number</label>
+                            <span id="number"></span>
+                        </div>
+                        <p class="text--center">Back to home -> <a href="{% url 'index' %}">Home</a>
+                        </p>
+                        <button class="btn btn-primary btn-lg btn-block" id="submit">Add bike</button>
+                        <script src="{% static 'js/vehicle.js' %}"></script>
+                        <script src="{% static 'js/vehicle_request.js' %}"></script>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="update" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                {{form.name}}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Update your bike</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" id="vehicle_form" enctype="multipart/form-data">
+                        <div class="form-outline mb-4">
+                            <input type="text" name="name" maxlength="20" class="form-control form-control-lg Name"
+                                   id="Name"
+                                   placeholder="Name" required="">
+                            <label class="form-label" for="name">name</label>
+                            <span id="nm"></span>
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <select name="color" class="form-control form-control-lg Color" id="Color"
+                                    placeholder="Color"
+                                    required="">
+                                <option value="" selected="">---------</option>
+                                <option value="R">Red</option>
+                                <option value="W">White</option>
+                                <option value="BL">Black</option>
+                                <option value="B">Blue</option>
+                                <option value="Y">Yellow</option>
+                            </select>
+                            <label class="form-label" for="color">color</label>
+                            <span id="clr"></span>
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <input type="number" name="price" min="0" max="9223372036854775807"
+                                   class="form-control form-control-lg Price" value="{{form.price}}" id="Price"
+                                   placeholder="Price" required="">
+                            <label class="form-label" for="price">price</label>
+                            <span id="prc"></span>
+
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <input type="number" name="mileage" min="0" class="form-control form-control-lg Mileage"
+                                   id="Mileage" placeholder="Mileage" required="">
+                            <label class="form-label" for="mileage">mileage</label>
+                            <span id="mlg"></span>
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <input type="text" name="number" maxlength="12" class="form-control form-control-lg Plate"
+                                   id="Plate number" placeholder="Plate number" required="">
+                            <label class="form-label" for="plate">plate_number</label>
+                            <span id="nmb"></span>
+                        </div>
+                        <p class="text--center">Back to home -> <a href="{% url 'index' %}">Home</a>
+                        </p>
+                        <button class="btn btn-primary btn-lg btn-block" id="update_car">Update</button>
+                        <script src="{% static 'js/vehicle.js' %}"></script>
+                        <script src="{% static 'js/vehicle_request.js' %}"></script>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/index.js' %}"></script>
+
+
